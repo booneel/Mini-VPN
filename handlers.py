@@ -1,3 +1,5 @@
+import time
+
 from crypto import *
 from protocol import *
 from key_exchange import *
@@ -24,6 +26,8 @@ def handle_public_key(session, server_socket, server_address, payload):
     server_socket.sendto(send_packet, server_address)
 
     print("[CLIENT] AES_KEY Sent")
+
+    session.last_rekey = time.time()
 
 def handle_aes_key(private_key, payload):
     session_key = decrypt_key(private_key, payload)

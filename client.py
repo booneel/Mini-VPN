@@ -59,7 +59,11 @@ print("[CLIENT] Send KEY_REQUEST")
 try:
     while True:
         now = time.time()
-        if now - session.last_rekey >= REKEY_INTERVAL:
+        if (
+            session.session_key is not None
+            and session.server_public_key is not None
+            and now - session.last_rekey >= REKEY_INTERVAL
+        ):
             print("[CLIENT] Rekey Start")
             new_key = generate_key()
             encrypted_key = encrypt_key(
@@ -108,4 +112,5 @@ try:
 except KeyboardInterrupt:
     print("Exit")
 finally:
+    server_socket.close()
     os.system("ip link delete tun0")

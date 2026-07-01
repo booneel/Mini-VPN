@@ -40,6 +40,7 @@ try:
                 print(f"[TIMEOUT] {session.client_address}")
                 session.session_key = None
                 session.client_address = None
+                session.last_seen = time.time()
         readable, _, _ = select.select([fd, server_socket], [], [], 1)
         for r in readable:
             if r == fd:
@@ -57,6 +58,7 @@ try:
 
                 if packet_type == KEY_REQUEST:
                     print("[SERVER] Packet Received")
+                    print(f"[SERVER] KEY_REQUEST from {addr}")
                     handle_key_request(server_socket, addr, public_key)
                     continue
                 elif packet_type == DATA:
@@ -76,4 +78,5 @@ try:
 except KeyboardInterrupt:
     print("Exit")
 finally:
+    server_socket.close()
     os.system("ip link delete tun0")
