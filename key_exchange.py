@@ -3,7 +3,7 @@ from cryptography.hazmat.primitives import serialization, hashes
 from config import *
 
 def initialize_server_keys():
-    KEY_DIR.mkdir(exist_ok=True. parents=True)
+    KEY_DIR.mkdir(exist_ok=True, parents=True)
     if not PRIVATE_KEY_FILE.exists() or not PUBLIC_KEY_FILE.exists():
         private_key, public_key = generate_keypair()
         save_private_key(private_key)
