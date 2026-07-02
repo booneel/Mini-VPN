@@ -116,7 +116,7 @@ Mini-VPN/
 - `send_data()`: 평문 패킷을 AES 암호화하여 `DATA`로 송신.
 - `send_keep_alive()`: 빈 `KEEP_ALIVE` 송신.
 
-**`config.py`** — 설정 상수. 키 저장 경로, `KEEP_ALIVE_INTERVAL=30`, `TIMEOUT=60`, `REKEY_INTERVAL=30`, `SERVER_PORT=5000`.
+**`config.py`** — 설정 상수. 키 저장 경로, `KEEP_ALIVE_INTERVAL=10`, `TIMEOUT=10`, `REKEY_INTERVAL=10`, `SERVER_PORT=5000`.
 
 **`requirements.txt`** — 의존성(`cryptography`).
 
